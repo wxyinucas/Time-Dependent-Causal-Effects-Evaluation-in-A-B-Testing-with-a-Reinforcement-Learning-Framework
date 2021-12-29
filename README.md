@@ -12,10 +12,12 @@ where there is only one unit that receives a sequence of treatments over time. I
 **Figure 1**: Causal diagram for MDP under settings where treatments depend on current states only. $(S_t,A_t,Y_t)$ represents the state-treatment-outcome triplet. Solid lines represent causal relationships. 
 
 <p float="left">
-<img src="4_alpha_1.png" alt="drawing" width="250"> 
-<img src="t_alpha_1.png" alt="drawing" width="250">
-<img src="BF.png" alt="drawing" width="250">
+<img src="4_alpha_1.png" alt="drawing" width="300"> 
+<img src="t_alpha_1.png" alt="drawing" width="300">
+<img src="BF.png" alt="drawing" width="300">
 </p>
+
+**Figure 2**: Empirical rejection probabilities of our test and the two-sample t-test with  $\alpha(\cdot)=\alpha_1(\cdot)$. Settings correspond to the alternating-time-interval, adaptive and Markov design, from top plots to bottom plots.
 
 
 ## Citation
