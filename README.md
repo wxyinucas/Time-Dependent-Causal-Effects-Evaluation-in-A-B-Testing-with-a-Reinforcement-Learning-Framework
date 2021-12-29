@@ -11,6 +11,12 @@ where there is only one unit that receives a sequence of treatments over time. I
 
 **Figure 1**: Causal diagram for MDP under settings where treatments depend on current states only. $(S_t,A_t,Y_t)$ represents the state-treatment-outcome triplet. Solid lines represent causal relationships. 
 
+<img align="center" src="4_alpha_1.png" alt="drawing" width="250"> 
+<img align="center" src="t_alpha_1.png" alt="drawing" width="250">
+<img align="center" src="BF.png" alt="drawing" width="250">
+
+
+
 ## Citation
 
 Please cite our paper
