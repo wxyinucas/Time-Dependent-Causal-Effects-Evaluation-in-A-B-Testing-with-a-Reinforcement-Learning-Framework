@@ -12,9 +12,9 @@ where there is only one unit that receives a sequence of treatments over time. I
 **Figure 1**: Causal diagram for MDP under settings where treatments depend on current states only. Solid lines represent causal relationships. 
 
 <p float="left">
-<img src="4_alpha_1.png" alt="drawing" width="300"> 
-<img src="t_alpha_1.png" alt="drawing" width="300">
-<img src="BF.png" alt="drawing" width="300">
+<img src="4_alpha_1.png" alt="drawing" width="250"> 
+<img src="t_alpha_1.png" alt="drawing" width="250">
+<img src="BF.png" alt="drawing" width="250">
 </p>
 
 **Figure 2**: Empirical rejection probabilities of our test (left), the two-sample t-test (middle) and the modified version of the O'Brien \& Fleming sequential test (right). Settings correspond to the alternating-time-interval, adaptive and Markov design, from top plots to bottom plots.
