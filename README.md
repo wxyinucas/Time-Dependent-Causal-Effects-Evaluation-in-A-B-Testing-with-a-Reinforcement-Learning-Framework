@@ -9,7 +9,7 @@ where there is only one unit that receives a sequence of treatments over time. I
 
 <img align="center" src="MDP.png" alt="drawing" width="700">
 
-**Figure 1**: Causal diagram for MDP under settings where treatments depend on current states only. $(S_t,A_t,Y_t)$ represents the state-treatment-outcome triplet. Solid lines represent causal relationships. 
+**Figure 1**: Causal diagram for MDP under settings where treatments depend on current states only. Solid lines represent causal relationships. 
 
 <p float="left">
 <img src="4_alpha_1.png" alt="drawing" width="300"> 
@@ -17,8 +17,7 @@ where there is only one unit that receives a sequence of treatments over time. I
 <img src="BF.png" alt="drawing" width="300">
 </p>
 
-**Figure 2**: Empirical rejection probabilities of our test and the two-sample t-test with  $\alpha(\cdot)=\alpha_1(\cdot)$. Settings correspond to the alternating-time-interval, adaptive and Markov design, from top plots to bottom plots.
-
+**Figure 2**: Empirical rejection probabilities of our test (left), the two-sample t-test (middle) and the modified version of the O'Brien \& Fleming sequential test (right). Settings correspond to the alternating-time-interval, adaptive and Markov design, from top plots to bottom plots.
 
 ## Citation
 
