@@ -26,7 +26,7 @@ Please cite our paper
 
 ``` 
 @article{shi2021time,
-  title={Time Dependent Causal Effects Evaluation in A/B Testing with a Reinforcement Learning Framework},
+  title={Dynamic Causal Effects Evaluation in A/B Testing with a Reinforcement Learning Framework},
   author={Shi, Chengchun and Wang, Xiaoyu and Luo, Shikai and Zhu, Hongtu and Ye, Jieping and Song, Rui},
   journal={Journal of the American Statistical Association},
   volume={accepted}
