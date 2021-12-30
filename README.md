@@ -19,6 +19,23 @@ where there is only one unit that receives a sequence of treatments over time. I
 
 **Figure 2**: Empirical rejection probabilities of our test (left), the two-sample t-test (middle) and the modified version of the O'Brien \& Fleming sequential test (right). Settings correspond to the alternating-time-interval, adaptive and Markov design, from top plots to bottom plots.
 
+
+## File Overview
+- `src/`: This folder contains all python codes used in numerical experiments.
+  - `conf.py` sets true parameters and functions used in estimation in one experiment.
+  We use `<verison>` as the key of a python dict to represent one numerical experiment.
+  - `main.py` is an entrance to be used in command line.
+  We can type `python main <version> 0` to start a new experiment and type
+  `python main <verison> 1` to see the result if the experiment has executed.
+  - `_analyzer.py` contains the functions to make tables and draw plots.
+  - `_monitor.py` is a platform to **realize the algorithm in our paper**, which includes the estimation part and hypothesis test part. 
+- `data/`: This folder contains raw results and corresponding pics of each experiment.
+  - Raw results names are like `<version>.json`.
+  - Plots names are like `<version>_<parameter_used_in_estimation>.png`.
+  
+
+
+
 ## Citation
 
 Please cite our paper

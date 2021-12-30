@@ -23,25 +23,25 @@ class DataGenerator:
                  initial_policy,
                  initial_action,
                  initial_state, **kwargs):
-        # 生成结果df
+        # generate result dataframe
         self.df_action_reward_state = pd.DataFrame(np.zeros((max_observation_num, 3 + state_dimension)),
                                                    columns=['t', 'a', 'y'] + [f's{i}' for i in range(state_dimension)])
         self.df_action_reward_state['t'] = np.array(range(1, max_observation_num + 1))
-        self.t_pointer = 0  # 注意计数器起始时间
+        self.t_pointer = 0  # Notice the initial time of time pointer
 
-        # 绑定函数
+        # bind functions
         self.state_transfer_func = state_transfer_func
         self.decision_making_policy = decision_making_policy
         self.initial_policy = initial_policy
 
-        # 绑定初始动作
+        # bind initial values
         self._init_a = initial_action
         self._init_s = initial_state
         assert state_dimension == len(
             initial_state), f'wrong dimension {state_dimension} and initial state {initial_state}'
 
     def run(self, **kwargs):
-        """返回进行时间节点t"""
+        """return a time t."""
         prev_time = self.t_pointer
         curr_time = prev_time + 1
         self.t_pointer = curr_time

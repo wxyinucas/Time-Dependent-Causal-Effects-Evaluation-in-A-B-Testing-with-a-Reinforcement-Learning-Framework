@@ -31,8 +31,8 @@ def _plot_alternative(ax, ob_times, data, **kwargs):
 
     plt.xlabel('Observation Times')
     plt.ylabel('Reject Probability')
-    plt.yticks(np.arange(0, 1.1, 0.1))  # 正常作图
-    # plt.yticks(np.arange(0, 0.1, 0.01))  # obf 作图
+    plt.yticks(np.arange(0, 1.1, 0.1))  # draw a normal pic
+    # plt.yticks(np.arange(0, 0.1, 0.01))  # draw an obf pic
 
     plt.legend(loc='best', fontsize='x-small')
 
@@ -48,22 +48,20 @@ def _plot_null(ax, ob_times, true_alphas, null_rates, **kwargs):
 
 
 def _plot_row(row_num, total_row_number: int, data: dict, time_alpha_pair_dct, **kwargs):
-    """对内部函数传参，辅助绘制标题、图例。"""
-    # 分配画布位置
+    """process title and legend"""
     ax_null = plt.subplot(total_row_number, 2, row_num * 2 + 2)
     ax_alter = plt.subplot(total_row_number, 2, row_num * 2 + 1)
 
-    # 处理数据
+    # process data
     ob_times = list(time_alpha_pair_dct.keys())
     ture_alphas = list(time_alpha_pair_dct.values())
 
-    # 绘制null
-    _plot_null(ax_null, ob_times, ture_alphas, null_rates=data['0']['rates'], **kwargs)  # todo: check data 的 key
+    # draw a pic of null
+    _plot_null(ax_null, ob_times, ture_alphas, null_rates=data['0']['rates'], **kwargs)
 
-    # 绘制alternative
+    # draw a pic of alternative
     _plot_alternative(ax_alter, ob_times, data)
 
-    # 绘制最左边的列名
     plt.ylabel(kwargs['policy_name'] + '\nReject Probability')
 
 

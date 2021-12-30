@@ -16,7 +16,7 @@ logger.setLevel(logging.DEBUG)
 
 # create handler
 ch = logging.StreamHandler()
-ch.setLevel(logging.INFO)  # 修改显示格式 todo: 在conf中添加
+ch.setLevel(logging.INFO)
 # ch.setLevel(logging.DEBUG)
 
 # create formatter

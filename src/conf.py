@@ -9,7 +9,6 @@
 ==================================
 
 Intro
-用于测试重构流程
 """
 from _func import *
 from _base_conf import BASE_PATH

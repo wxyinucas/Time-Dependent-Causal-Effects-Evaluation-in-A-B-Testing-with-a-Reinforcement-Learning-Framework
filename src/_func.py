@@ -49,7 +49,6 @@ OBF.name = 'O\'Brien-Fleming Bound'
 
 
 def zip_test_time_and_spending_alpha(spending_function, total_alpha, estimate_times, max_observation_num, **kwargs):
-    """修改了逻辑，使得最后一次总是被测试次数"""
     test_time_list = [max_observation_num // 2]
     gap = int(max_observation_num / 2 / (estimate_times - 1))
     for i in range(estimate_times - 2):
@@ -58,7 +57,7 @@ def zip_test_time_and_spending_alpha(spending_function, total_alpha, estimate_ti
     alpha_list = [spending_function(total_alpha, t, TK=max_observation_num, **kwargs) for t in test_time_list]
 
     time_alpha_pair_dct = {key: value for key, value in zip(test_time_list, alpha_list)}
-    return [0] + test_time_list, time_alpha_pair_dct  # checked 如果删掉了回报错吗？ 这样使得list中k是正数，一一对应
+    return [0] + test_time_list, time_alpha_pair_dct
 
 
 def zip_ofb_test_time_and_spending(spending_function, total_alpha, estimate_times, max_observation_num, **kwargs):
@@ -137,7 +136,7 @@ def egreedy_policy(**kwargs):
     judge = np.random.uniform(0, 1)
     if judge > epsilon:
         argmax_arr = np.flatnonzero(Q_arr == Q_arr.max())
-        return np.random.choice(argmax_arr)  # Notice: 因为现在的action取决于之前的action，此处如何设置？
+        return np.random.choice(argmax_arr)
     else:
         return np.random.choice(np.flatnonzero(Q_arr))
 

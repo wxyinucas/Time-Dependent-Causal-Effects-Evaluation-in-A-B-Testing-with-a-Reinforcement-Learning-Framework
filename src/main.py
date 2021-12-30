@@ -9,12 +9,7 @@
 ==================================
 
 Intro
-整理布局分成三个部分：
-1 数据生成（有反馈/无反馈）
-2 终止条件的选择
-3 结果收集和分析
 
-我们在main中读入参数，并分发到各个部分。
 """
 from _logger import logger
 from _data_generator import DataGenerator, TestDataGenerator
@@ -55,25 +50,23 @@ def causal_rl(data_generator, monitor):
                         gamma=gamma,
                         B=conf_dct['B'])
 
-            counter = {i: 0 for i in test_time_list[1:]}  # test_time_list 中位置和k一一对应，故排除第0个
-            # 相同设定下，跑iterations次
+            counter = {i: 0 for i in test_time_list[1:]}
             for _ in tqdm(range(iterations)):
 
-                # 相同设定下，跑一次
                 flag_initial_policy = True
                 for t in range(1, max_observation_num + 1):
                     Q_arr = m.cal_q_arr(dg.df_action_reward_state.iloc[-1, 2:],
                                         dg.df_action_reward_state.iloc[-1, 1],
-                                        flag_initial_policy)  # 仅用于egreedy
+                                        flag_initial_policy)
 
                     dg.run(delta=delta,
                            last_action=dg.df_action_reward_state.iloc[-1, 1],
                            flag_initial_policy=flag_initial_policy,
                            epsilon=0.1,
-                           Q_arr=Q_arr)  # checked last_a
+                           Q_arr=Q_arr)
 
                     if t in test_time_list and t != 0:
-                        k = test_time_list.index(t)  # 只看正数
+                        k = test_time_list.index(t)
                         if k == 1:
                             flag_initial_policy = False
 
@@ -84,13 +77,11 @@ def causal_rl(data_generator, monitor):
                             counter[t] += 1
                             break
                 else:
-                    # counter[t] += 1 # 仅仅用于debug
                     pass
 
                 logger.debug(f"{_} times")
                 dg.reset()
                 m.reset()
-                # logger.debug(m.backup['cum']['omega'][0])  # debug
 
             # show results
             counter = np.asarray(list(counter.values()))
@@ -126,7 +117,7 @@ def causal_rl(data_generator, monitor):
                 if delta == delta_lst[0]:
                     if decision_making_policy == decision_making_policy_lst[0]:
                         if spending_function == spending_function_lst[0]:
-                            if saver == 1:  # 用于删除旧文件
+                            if saver == 1:
                                 logger.info('create a json file')
                                 context = {str(saver): result}
                             else:

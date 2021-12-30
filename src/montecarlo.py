@@ -58,10 +58,8 @@ def monte_carlo(data_generator):
 
             m = MonteCarloMonitor(weights, delta)
 
-            # 相同设定下，跑iterations次
             for _ in range(iterations):
 
-                # 相同设定下，跑一次
                 flag_initial_policy = True
                 for t in range(1, tra_len + 1):
                     Q_arr = np.array([0.1, 0.1])

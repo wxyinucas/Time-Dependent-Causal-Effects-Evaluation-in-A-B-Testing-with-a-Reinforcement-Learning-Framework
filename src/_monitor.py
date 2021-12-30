@@ -38,7 +38,7 @@ def _cal_xi(s, a, no_zeros: bool = False, *, phi_basis):
         return xi
     else:
         zeros = np.zeros_like(xi)
-        if a == 0:  # remark：更改了顺序
+        if a == 0:
             res = np.hstack((xi, zeros))
         elif a == 1:
             res = np.hstack((zeros, xi))
@@ -74,7 +74,7 @@ def matrix_sqrt(mat, eps=1e-3):
     return res
 
 
-class Monitor:  # todo: 肯定是monitor的问题！！！！！！！！！！！！！！！！！！！
+class Monitor:
     def __init__(self, *, state_dimension, phi_basis, gamma, B):
         L = len(phi_basis)
         # ================================================== #
@@ -137,7 +137,6 @@ class Monitor:  # todo: 肯定是monitor的问题！！！！！！！！！！�
                        'index': self.index.copy(),
                        'test_info': {}
                        }
-        # done: 继续追踪backup！！！！！！！！！！！！！！！！！1222
 
     def cal_q_arr(self, s, last_a, flag_initial_policy):
         Q_arr = np.array([0, 0.01])
@@ -183,7 +182,7 @@ class Monitor:  # todo: 肯定是monitor的问题！！！！！！！！！！�
         cum_eta = cum['eta']
 
         cum_omega = cum['omega']
-        omega_star = cum['omega_star'].copy()  # 等价于0
+        omega_star = cum['omega_star'].copy()
         u = cum['u']
 
         # process data
@@ -196,7 +195,6 @@ class Monitor:  # todo: 肯定是monitor的问题！！！！！！！！！！�
         t = test_time_list[k]
 
         # calculate Sigma and Eta
-        # check: 需要跟一步跟进观察
         for idx, x in enumerate(x_s[:-1]):
             xi_t = cal_xi(x_s[idx], a_s[idx])
             cum_sigma_0 += xi_t @ (xi_t - gamma * cal_xi(x_s[idx + 1], 0)).T
@@ -210,7 +208,7 @@ class Monitor:  # todo: 肯定是monitor的问题！！！！！！！！！！�
         beta0, _residuals, _rank, _s = np.linalg.lstsq(sigma_0, eta, rcond=None)
         beta1, _residuals, _rank, _s = np.linalg.lstsq(sigma_1, eta, rcond=None)
 
-        beta = np.hstack((beta0, beta1))  # 应该是4L行1列矩阵
+        beta = np.hstack((beta0, beta1))
 
         # calculate omega_star
         for idx, x in enumerate(x_s[:-1]):
@@ -290,7 +288,7 @@ class Monitor:  # todo: 肯定是monitor的问题！！！！！！！！！！�
 
         percentile = (1 - alpha_up_to_now) / (1 - I_c / B)  # 这才是upper percentile todo:check
         # percentile = (alpha_up_to_now - I_c / B) / (1 - I_c / B)
-        if percentile > 1:  # done: 需要检查一下为什么这么大
+        if percentile > 1:
             percentile = 1
             logger.fatal('to huge!')
         z = np.percentile(Z, percentile * 100)  # cv as z in article
@@ -335,8 +333,8 @@ class OBFMonitor:
         self.cum = {
             'mu_pos': 0,
             'mu_neg': 0,
-            't_pos': 0,  # a = 1时，正样本的总数
-            't_neg': 0,  # a = 0时，负样本的总数
+            't_pos': 0,
+            't_neg': 0,
             'y': np.array([])
         }
 
@@ -350,14 +348,12 @@ class OBFMonitor:
                                   df_action_reward_state.iloc[:, 2]]
                                  ))
 
-        # 生成正负数据
         mask = a_s > 0
         y_pos = y_s[mask]
         y_neg = y_s[~mask]
         n_pos = len(y_pos)
         n_neg = len(y_neg)
 
-        # 计算
         y = np.append(cum['y'], y_s)
         tmp = y - y.mean()
 
@@ -370,10 +366,7 @@ class OBFMonitor:
         Dx = 1 / (t_pos + t_neg - 1) * (tmp * tmp).sum()
         D_sub = (1 / t_pos + 1 / t_neg) * Dx
         z = k * (mu_pos - mu_neg) ** 2 / D_sub
-        # logger.error(f"{k}-th: z-->{z}")
-        # logger.error(f'{t_pos}, {t_neg}')
 
-        #
         self.cum.update({
             'mu_pos': mu_pos,
             'mu_neg': mu_neg,
@@ -416,15 +409,10 @@ class TTestMonitor:
         y_pos = y_s[mask]
         y_neg = y_s[~mask]
 
-        # y_pos = y_s[~mask]
-        # y_neg = y_s[mask]
-
         self.y_pos = np.concatenate([self.y_pos, y_pos])
         self.y_neg = np.concatenate([self.y_neg, y_neg])
 
         sta, p, _ = ttest_ind(self.y_pos, self.y_neg, alternative='larger')
-        # if k == 5:
-        #     print(f'{self.y_neg.mean():.3f}, {self.y_pos.mean():.3f}')
 
         if p < time_alpha_pair_dct[t]:
             rej = True
@@ -469,7 +457,6 @@ class MonteCarloMonitor:
                                df_action_reward_state_1.iloc[:, 2]]
                               ))
 
-        # 收集新y
         ys0_sum += y_s0 @ self.weights
         ys1_sum += y_s1 @ self.weights
         counter += len(self.weights)
