@@ -22,11 +22,11 @@ where there is only one unit that receives a sequence of treatments over time. I
 
 ## File Overview
 - `src/`: This folder contains all python codes used in numerical experiments.
-  - `conf.py` sets true parameters and functions used in estimation in one experiment.
+  - `conf.py` sets true parameters and functions used in estimation for one experiment.
   We use `<verison>` as the key of a python dict to represent one numerical experiment.
   - `main.py` is an entrance to be used in command line.
-  We can type `python main <version> 0` to start a new experiment and type
-  `python main <verison> 1` to see the result if the experiment has executed.
+  We can type `python main.py <version> 0` to start a new experiment and type
+  `python main.py <verison> 1` to see the result if the experiment has executed.
   - `_analyzer.py` contains the functions to make tables and draw plots.
   - `_monitor.py` is a platform to **realize the algorithm in our paper**, which includes the estimation part and hypothesis test part. 
 - `data/`: This folder contains raw results and corresponding pics of each experiment.
