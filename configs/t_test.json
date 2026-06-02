@@ -1,0 +1,42 @@
+{
+  "version": "t_test",
+  "spending_functions": [
+    "alpha1",
+    "alpha2"
+  ],
+  "max_observation_num": 600,
+  "total_alpha": 0.05,
+  "iterations": 500,
+  "state_transfer_func": "ttest_simulation",
+  "decision_making_policies": [
+    "alternating_policy",
+    "egreedy_policy",
+    "random_policy"
+  ],
+  "initial_policy": "alternating_policy",
+  "initial_action": 0,
+  "state_dimension": 2,
+  "initial_state": [
+    0,
+    0
+  ],
+  "q": [
+    4
+  ],
+  "K": [
+    5
+  ],
+  "gamma": [
+    0.5
+  ],
+  "delta": [
+    0,
+    0.1,
+    0.2,
+    0.3,
+    0.4
+  ],
+  "B": 1000,
+  "generator": "DataGenerator",
+  "monitor": "TTestMonitor"
+}

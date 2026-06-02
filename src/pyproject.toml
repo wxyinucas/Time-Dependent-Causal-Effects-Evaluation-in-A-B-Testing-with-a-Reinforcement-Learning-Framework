@@ -1,0 +1,30 @@
+[project]
+name = "causal-rl"
+version = "0.1.0"
+description = "Dynamic Causal Effects Evaluation in A/B Testing with a Reinforcement Learning Framework"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pandas>=2.0",
+    "statsmodels>=0.14",
+    "matplotlib>=3.7",
+    "seaborn>=0.12",
+    "tqdm>=4.65",
+]
+
+[project.scripts]
+causal-rl = "main:main"          # 后续重构后会指向 cli.py
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+]
